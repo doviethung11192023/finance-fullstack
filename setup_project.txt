@@ -1,0 +1,40 @@
+//copy vào trong PowerShell để chạy (phần ở dưới)
+
+
+
+
+
+$BaseDir = "E:\agent\finance"
+Write-Host "🚀 Đang khởi tạo cấu trúc thư mục tại $BaseDir ..." -ForegroundColor Cyan
+
+# 1. Tạo các thư mục
+$directories = @(
+    "deploy",
+    "database",
+    "grafana\provisioning\datasources",
+    "evaluation\results",
+    "src\evaluation",
+    "tests"
+)
+
+foreach ($dir in $directories) {
+    New-Item -Path "$BaseDir\$dir" -ItemType Directory -Force | Out-Null
+}
+
+# 2. Tạo các file
+$files = @(
+    ".env.example", ".env", ".gitignore", "requirements.txt", "Dockerfile", "Dockerfile.lambda", "docker-compose.yml", "prometheus.yml",
+    "deploy\clouddeploy.sh",
+    "database\schema.sql",
+    "grafana\provisioning\datasources\datasource.yaml",
+    "evaluation\gold_standard.json", "evaluation\results\.gitkeep",
+    "src\__init__.py", "src\config.py", "src\logging_config.py", "src\gemini_client.py", "src\supabase_client.py", "src\fetch_data.py", "src\process_data.py", "src\rag.py", "src\middleware.py", "src\health.py", "src\main.py",
+    "src\evaluation\__init__.py", "src\evaluation\retrieval_metrics.py", "src\evaluation\generation_metrics.py", "src\evaluation\run_eval.py",
+    "tests\__init__.py", "tests\conftest.py", "tests\test_fetch.py", "tests\test_process.py", "tests\test_api.py", "tests\test_docker.py", "tests\test_rag_eval.py"
+)
+
+foreach ($file in $files) {
+    New-Item -Path "$BaseDir\$file" -ItemType File -Force | Out-Null
+}
+
+Write-Host "✅ Hoàn thành! Toàn bộ cấu trúc dự án đã được tạo thành công." -ForegroundColor Green
