@@ -5,7 +5,7 @@ Pipeline xử lý dữ liệu:
   3. Insert vào Supabase (PostgreSQL + pgvector)
 """
 import time
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from loguru import logger
 from src.config import settings
 from src.gemini_client import get_embeddings_batch

@@ -1,24 +1,33 @@
 # === Core ===
-fastapi>=0.115.0
+fastapi==0.114.2
 uvicorn[standard]>=0.30.0
 pydantic>=2.0
 pydantic-settings>=2.0
+python-dotenv>=1.0.0              # THÊM MỚI: Bắt buộc phải có để pydantic-settings đọc được file .env
 
 # === Database ===
 supabase>=2.0
 
 # === AI / ML ===
 google-genai>=1.0
+langchain>=0.2.0                  # THÊM MỚI: Để sửa lỗi ModuleNotFoundError bạn vừa gặp
+langchain-community>=0.2.0        # THÊM MỚI: Hỗ trợ các công cụ tách text tốt hơn
 langchain-text-splitters>=0.2.0
 
 # === Data ===
 yfinance>=0.2.40
+pandas>=2.0.0                     # THÊM MỚI: yfinance trả về dữ liệu dùng Pandas, nên khai báo rõ để thao tác data dễ hơn
+
+# === Production & Deployment ===
+gunicorn>=21.2.0                  # THÊM MỚI: Web server mạnh mẽ, cực kỳ cần thiết khi bạn chạy Docker hoặc deploy lên Google Cloud Run.
 
 # === Logging & Monitoring ===
 loguru>=0.7.0
-prometheus-fastapi-instrumentator>=7.0.0
+prometheus-fastapi-instrumentator>=7.0.2
 
-# === Testing ===
+# === Testing & Evaluation ===
 pytest>=8.0
 pytest-asyncio>=0.23.0
-httpx>=0.27.0                  # Required by FastAPI TestClient
+httpx>=0.27.0                     # Required by FastAPI TestClient
+pytest-cov>=5.0.0                 # THÊM MỚI: Chấm điểm xem bạn đã viết test bao phủ được bao nhiêu % code dự án
+numpy>=1.26.0                     # THÊM MỚI: Không thể thiếu để tính toán ma trận, vector (Cosine Similarity) trong file retrieval_metrics.py
